@@ -6,13 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
+    const HTTP_STATUS_CODE_OK = 200;
+
     public function testIndex()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/');
+        $client->request('GET', '/');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
+        $response = $client->getResponse();
+
+        $this->assertEquals(self::HTTP_STATUS_CODE_OK, $response->getStatusCode());
+        $this->assertContains('Welcome to shakeit', $response->getContent());
     }
 }
