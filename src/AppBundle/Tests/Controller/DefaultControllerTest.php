@@ -32,7 +32,6 @@ class DefaultControllerTest extends WebTestCase
      */
     public function shouldSeeInAPageATextUsingControllerAsService()
     {
-        $this->markTestSkipped('Remove when pass the other test');
         $controller = new NewController();
 
         $response = $controller->index();
