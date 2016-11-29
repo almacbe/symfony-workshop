@@ -34,7 +34,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $controller = new NewController();
 
-        $response = $controller->index();
+        $response = $controller->index(self::DEFAULT_PAGE);
 
         $this->assertEquals(self::HTTP_STATUS_CODE_OK, $response->getStatusCode());
         $this->assertContains(self::LIST_OF_NEWS_MESSAGE, $response->getContent());
