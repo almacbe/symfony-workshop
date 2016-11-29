@@ -11,7 +11,7 @@ class NewController
     /**
      * @Route("/news")
      */
-    public function show()
+    public function index()
     {
         return new Response('List of news');
     }

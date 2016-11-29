@@ -38,4 +38,19 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(self::HTTP_STATUS_CODE_OK, $response->getStatusCode());
         $this->assertContains(self::LIST_OF_NEWS_MESSAGE, $response->getContent());
     }
+
+    /**
+     * @test
+     */
+    public function shouldRequestForANewsPage()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/news');
+
+        $response = $client->getResponse();
+
+        $this->assertEquals(self::HTTP_STATUS_CODE_OK, $response->getStatusCode());
+        $this->assertContains(self::LIST_OF_NEWS_MESSAGE, $response->getContent());
+    }
 }
