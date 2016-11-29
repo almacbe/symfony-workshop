@@ -2,13 +2,19 @@
 
 namespace AppBundle\Tests\Controller;
 
+use AppBundle\Controller\NewController;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
     const HTTP_STATUS_CODE_OK = 200;
+    const WELCOME_MESSAGE = 'Welcome to shakeit';
+    const LIST_OF_NEWS_MESSAGE = 'List of news';
 
-    public function testIndex()
+    /**
+     * @test
+     */
+    public function shouldSeeInHomePageAText()
     {
         $client = static::createClient();
 
@@ -17,6 +23,19 @@ class DefaultControllerTest extends WebTestCase
         $response = $client->getResponse();
 
         $this->assertEquals(self::HTTP_STATUS_CODE_OK, $response->getStatusCode());
-        $this->assertContains('Welcome to shakeit', $response->getContent());
+        $this->assertContains(self::WELCOME_MESSAGE, $response->getContent());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldSeeInAPageATextUsingControllerAsService()
+    {
+        $controller = new NewController();
+
+        $response = $controller->show();
+
+        $this->assertEquals(self::HTTP_STATUS_CODE_OK, $response->getStatusCode());
+        $this->assertContains(self::LIST_OF_NEWS_MESSAGE, $response->getContent());
     }
 }
