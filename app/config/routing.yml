@@ -1,4 +1,8 @@
-app:
-    resource: '@AppBundle/Controller'
-    type: annotation
+#app:
+#    resource: '@AppBundle/Controller'
+#    type: annotation
 
+
+home:
+    path: /index
+    defaults: { _controller: AppBundle\Controller\HomeController::home }
